@@ -26,8 +26,7 @@ TODO
 curl -X POST "http://example.com/v1/plans" \
   -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
-  -d \
-  '{
+  -d '{
     "name": "some-plan-name",
     "description": "some-description",
     "auth_domain": "some-auth-domain.com",
