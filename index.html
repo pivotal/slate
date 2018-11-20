@@ -275,7 +275,7 @@
   -d <span class="s1">'{
     "name": "some-plan-name",
     "description": "some-description",
-    "auth_domain": "some-auth-domain.com",
+    "auth_domain": "some-auth-domain",
     "instance_name": "some-instance-name"
   }'</span>
 </code></pre>
@@ -286,7 +286,7 @@
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-plan-name"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-description"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"auth_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-auth-domain.com"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"auth_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-auth-domain"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-instance-name"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -314,7 +314,7 @@
 <tr>
 <td>auth_domain</td>
 <td>String</td>
-<td>URL where users authenticate to access applications covered by the service plan</td>
+<td>Subdomain of the URL where users authenticate to access applications covered by the service plan</td>
 </tr>
 <tr>
 <td>instance_name</td>
