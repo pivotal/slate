@@ -9,7 +9,7 @@ curl -X POST "http://example.com/v1/plans" \
   -d '{
     "name": "some-plan-name",
     "description": "some-description",
-    "auth_domain": "some-auth-domain.com",
+    "auth_domain": "some-auth-domain",
     "instance_name": "some-instance-name"
   }'
 ```
@@ -21,7 +21,7 @@ curl -X POST "http://example.com/v1/plans" \
   "id": "1",
   "name": "some-plan-name",
   "description": "some-description",
-  "auth_domain": "some-auth-domain.com",
+  "auth_domain": "some-auth-domain",
   "instance_name": "some-instance-name"
 }
 ```
@@ -38,5 +38,5 @@ Parameter | Type | Description
 --------- | ------- | -----------
 name | String | Name of the plan
 description | String | Appears as a plan feature in the Services Marketplace
-auth_domain | String | URL where users authenticate to access applications covered by the service plan
+auth_domain | String | Subdomain of the URL where users authenticate to access applications covered by the service plan
 instance_name | String | Appears on the login page and in other user-facing content, such as email communications
