@@ -225,6 +225,23 @@
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
           </li>
           <li>
+            <a href="#workflows" class="toc-h1 toc-link" data-title="Workflows">Workflows</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#give-plan-access-to-an-org" class="toc-h2 toc-link" data-title="Give plan access to an org">Give plan access to an org</a>
+                  </li>
+                  <li>
+                    <a href="#give-plan-access-to-all-orgs" class="toc-h2 toc-link" data-title="Give plan access to all orgs">Give plan access to all orgs</a>
+                  </li>
+                  <li>
+                    <a href="#remove-plan-access-from-an-org" class="toc-h2 toc-link" data-title="Remove plan access from an org">Remove plan access from an org</a>
+                  </li>
+                  <li>
+                    <a href="#remove-plan-access-from-all-orgs" class="toc-h2 toc-link" data-title="Remove plan access from all orgs">Remove plan access from all orgs</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#plans" class="toc-h1 toc-link" data-title="Plans">Plans</a>
               <ul class="toc-list-h2">
                   <li>
@@ -244,6 +261,14 @@
 <p>TODO</p>
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
+<h1 id='workflows'>Workflows</h1><h2 id='give-plan-access-to-an-org'>Give plan access to an org</h2>
+<p><code>cf enable-service-access p-identity -p PLAN_NAME -o ORG_NAME</code></p>
+<h2 id='give-plan-access-to-all-orgs'>Give plan access to all orgs</h2>
+<p><code>cf enable-service-access p-identity -p PLAN_NAME</code></p>
+<h2 id='remove-plan-access-from-an-org'>Remove plan access from an org</h2>
+<p><code>cf disable-service-access p-identity -p PLAN_NAME -o ORG_NAME</code></p>
+<h2 id='remove-plan-access-from-all-orgs'>Remove plan access from all orgs</h2>
+<p><code>cf disable-service-access p-identity -p PLAN_NAME</code></p>
 <h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
