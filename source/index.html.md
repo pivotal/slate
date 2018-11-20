@@ -5,6 +5,7 @@ language_tabs:
   - shell
 
 includes:
+  - workflows
   - plans
   - errors
 
