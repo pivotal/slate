@@ -247,6 +247,9 @@
                   <li>
                     <a href="#create-a-plan" class="toc-h2 toc-link" data-title="Create a Plan">Create a Plan</a>
                   </li>
+                  <li>
+                    <a href="#get-a-plan-by-id" class="toc-h2 toc-link" data-title="Get a Plan by ID">Get a Plan by ID</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -293,10 +296,10 @@
 <p>This endpoint creates a plan.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /v1/plans</code></p>
-<h3 id='request-fields'>Request Fields</h3>
+<h3 id='request-body-fields'>Request Body Fields</h3>
 <table><thead>
 <tr>
-<th>Parameter</th>
+<th>Field</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -320,6 +323,37 @@
 <td>instance_name</td>
 <td>String</td>
 <td>Appears on the login page and in other user-facing content, such as email communications</td>
+</tr>
+</tbody></table>
+<h2 id='get-a-plan-by-id'>Get a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer some-token"</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-plan-name"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-description"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"auth_domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-auth-domain"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"instance_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some-instance-name"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a plan by its ID.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET /v1/plans/{id}</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
 </tr>
 </tbody></table>
 <h1 id='errors'>Errors</h1>
