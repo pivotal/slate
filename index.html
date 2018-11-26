@@ -228,16 +228,7 @@
             <a href="#workflows" class="toc-h1 toc-link" data-title="Workflows">Workflows</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#give-plan-access-to-an-org" class="toc-h2 toc-link" data-title="Give plan access to an org">Give plan access to an org</a>
-                  </li>
-                  <li>
-                    <a href="#give-plan-access-to-all-orgs" class="toc-h2 toc-link" data-title="Give plan access to all orgs">Give plan access to all orgs</a>
-                  </li>
-                  <li>
-                    <a href="#remove-plan-access-from-an-org" class="toc-h2 toc-link" data-title="Remove plan access from an org">Remove plan access from an org</a>
-                  </li>
-                  <li>
-                    <a href="#remove-plan-access-from-all-orgs" class="toc-h2 toc-link" data-title="Remove plan access from all orgs">Remove plan access from all orgs</a>
+                    <a href="#managing-cloudfoundry-organizations-for-sso-plans" class="toc-h2 toc-link" data-title="Managing CloudFoundry Organizations for SSO Plans">Managing CloudFoundry Organizations for SSO Plans</a>
                   </li>
               </ul>
           </li>
@@ -264,14 +255,55 @@
 <p>TODO</p>
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
-<h1 id='workflows'>Workflows</h1><h2 id='give-plan-access-to-an-org'>Give plan access to an org</h2>
-<p><code>cf enable-service-access p-identity -p PLAN_NAME -o ORG_NAME</code></p>
-<h2 id='give-plan-access-to-all-orgs'>Give plan access to all orgs</h2>
-<p><code>cf enable-service-access p-identity -p PLAN_NAME</code></p>
-<h2 id='remove-plan-access-from-an-org'>Remove plan access from an org</h2>
-<p><code>cf disable-service-access p-identity -p PLAN_NAME -o ORG_NAME</code></p>
-<h2 id='remove-plan-access-from-all-orgs'>Remove plan access from all orgs</h2>
-<p><code>cf disable-service-access p-identity -p PLAN_NAME</code></p>
+<h1 id='workflows'>Workflows</h1><h2 id='managing-cloudfoundry-organizations-for-sso-plans'>Managing CloudFoundry Organizations for SSO Plans</h2><pre class="highlight plaintext"><code>$ cf api api.cf.example.com
+Setting api endpoint to api.cf.example.com...
+
+$ cf auth sso-api-client sso-api-client-secret --client-credentials
+API endpoint: https://api.cf.example.com
+Authenticating...
+OK
+Use 'cf target' to view or set your target org and space.
+
+$ cf service-access -e p-identity
+Getting service access for service p-identity as ...
+broker: identity-service-broker
+   service      plan                 access    orgs
+   p-identity   uaa                  none
+   p-identity   example-all     all
+   p-identity   example                 limited   org1,org2
+
+$ cf enable-service-access p-identity -p example -o system
+Enabling access to plan asdf of service p-identity for org system as ...
+OK
+
+$ cf enable-service-access p-identity -p example-all
+Enabling access of plan some-auth-domain for service p-identity as ...
+OK
+
+$ cf disable-service-access p-identity -p example
+Disabling access of plan example for service p-identity as ...
+OK
+
+$ cf disable-service-access p-identity -p example-all
+Disabling access of plan example-all for service p-identity as ...
+OK
+</code></pre>
+<p>In order to manage CloudFoundry Organizations for SSO Plans, we will be using
+the CF cli: <a href="https://github.com/cloudfoundry/cli">https://github.com/cloudfoundry/cli</a>.</p>
+
+<p>Please target and authenticate using the CF cli prior to running the following commands. You may authenticate using <a href="http://cli.cloudfoundry.org/en-US/cf/login.html">cf login</a> or <a href="http://cli.cloudfoundry.org/en-US/cf/auth.html">cf auth</a>. <code>cf auth</code> is useful when authenticating as a service account.  These commands require a user with the <code>cloud_controller.admin</code> scope.</p>
+
+<p>Plan names are derived from the SSO Plan&#39;s auth domain. This can be retrieved in the response for <a href="#create-a-plan">Creating a Plan</a> or <a href="#get-a-plan-by-id">Getting a Plan by ID</a>.</p>
+<h3 id='viewing-current-plan-access-to-orgs'>Viewing current plan access to orgs</h3>
+<p><code>cf service-access -e p-identity</code></p>
+<h3 id='give-plan-access-to-a-specific-org'>Give plan access to a specific org</h3>
+<p><code>cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN -o ORG_NAME</code></p>
+<h3 id='give-plan-access-to-all-orgs'>Give plan access to all orgs</h3>
+<p><code>cf enable-service-access p-identity -p PLAN_AUTH_DOMAIN</code></p>
+<h3 id='remove-plan-access-from-a-specific-org'>Remove plan access from a specific org</h3>
+<p><code>cf disable-service-access p-identity -p PLAN_AUTH_DOMAIN -o ORG_NAME</code></p>
+<h3 id='remove-plan-access-from-all-orgs'>Remove plan access from all orgs</h3>
+<p><code>cf disable-service-access p-identity -p PLAN_AUTH_DOMAIN</code></p>
 <h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
