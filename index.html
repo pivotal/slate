@@ -230,6 +230,9 @@
                   <li>
                     <a href="#managing-cloudfoundry-organizations-for-sso-plans" class="toc-h2 toc-link" data-title="Managing CloudFoundry Organizations for SSO Plans">Managing CloudFoundry Organizations for SSO Plans</a>
                   </li>
+                  <li>
+                    <a href="#managing-plan-administrators-for-sso-plans" class="toc-h2 toc-link" data-title="Managing Plan Administrators for SSO Plans">Managing Plan Administrators for SSO Plans</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -304,6 +307,62 @@ the CF cli: <a href="https://github.com/cloudfoundry/cli">https://github.com/clo
 <p><code>cf disable-service-access p-identity -p PLAN_AUTH_DOMAIN -o ORG_NAME</code></p>
 <h3 id='remove-plan-access-from-all-orgs'>Remove plan access from all orgs</h3>
 <p><code>cf disable-service-access p-identity -p PLAN_AUTH_DOMAIN</code></p>
+<h2 id='managing-plan-administrators-for-sso-plans'>Managing Plan Administrators for SSO Plans</h2><pre class="highlight plaintext"><code>$ uaac target login.cf.example.com
+
+Target: https://login.cf.example.com
+Context: admin, from client admin
+
+$ uaac token client get sso-api-client -s sso-api-client-secret
+
+Successfully fetched token via client credentials grant.
+Target: https://login.cf.example.com
+Context: sso-api-client, from client sso-api-client
+
+$ uaac group get zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
+  id: a89ff489-f910-42e9-a8fc-a40486bb5b7f
+  meta
+    version: 4
+    created: 2018-10-30T23:09:58.000Z
+    lastmodified: 2018-11-26T22:38:37.000Z
+  description:
+  members:
+  -
+    origin: uaa
+    type: USER
+    value: 5d09d594-546d-49fd-b8c1-986875d2b45c
+  -
+    origin: uaa
+    type: USER
+    value: 9ceb2a21-e7ca-428d-ad51-3cb5df9919fe
+  schemas: urn:scim:schemas:core:1.0
+  displayname: zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
+  zoneid: uaa
+
+$ uaac member add zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
+success
+
+$ uaac member delete zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
+success
+</code></pre>
+<p>In order to manage Plan Administrators for SSO Plans, we will be using
+the UAA cli: <a href="https://github.com/cloudfoundry/cf-uaac">https://github.com/cloudfoundry/cf-uaac</a>.</p>
+
+<p>Please target and authenticate the system UAA zone using the UAA cli prior to running the following commands.
+The UAA cli has many ways of fetching a token, please see <code>uaac token --help</code> for options.
+We recommend having a user with <code>uaa.admin</code> scope for the following commands.</p>
+
+<p>For these commands, you will need to know the Plan ID.
+This can be retrieved in the response for <a href="#create-a-plan">Creating a Plan</a>.</p>
+<h3 id='viewing-current-plan-administrators-for-a-plan'>Viewing current plan administrators for a plan</h3>
+<p><code>uaac group get zones.PLAN_ID.admin</code></p>
+
+<p>The response will list plan administrators by the user ID.
+To view more information about the users in the response, you
+may run</p>
+<h3 id='grant-a-plan-administrator-access-to-a-plan'>Grant a plan administrator access to a plan</h3>
+<p><code>uaac member add zones.PLAN_ID.admin [users...]</code></p>
+<h3 id='revoke-a-plan-administrator-access-to-a-plan'>Revoke a plan administrator access to a plan</h3>
+<p><code>uaac member delete zones.PLAN_ID.admin [users...]</code></p>
 <h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -326,6 +385,28 @@ the CF cli: <a href="https://github.com/cloudfoundry/cli">https://github.com/clo
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint creates a plan.</p>
+<h3 id='required-scopes'>Required Scopes</h3>
+<p>One of the following combinations of scopes is required:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>zones.write</code> <br> <code>scim.read</code> <br> <code>scim.write</code></td>
+</tr>
+</tbody></table>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /v1/plans</code></p>
 <h3 id='request-body-fields'>Request Body Fields</h3>
