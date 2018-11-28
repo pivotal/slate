@@ -247,6 +247,9 @@
                   <li>
                     <a href="#update-a-plan" class="toc-h2 toc-link" data-title="Update a Plan">Update a Plan</a>
                   </li>
+                  <li>
+                    <a href="#delete-a-plan-by-id" class="toc-h2 toc-link" data-title="Delete a Plan by ID">Delete a Plan by ID</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -597,6 +600,48 @@ may run</p>
 </tbody></table>
 
 <p><strong>Note</strong>: A plan&#39;s auth domain is immutable. </p>
+<h2 id='delete-a-plan-by-id'>Delete a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer some-token"</span>
+</code></pre>
+<p>This endpoint deletes a plan by its ID.</p>
+<h3 id='required-scopes-4'>Required Scopes</h3>
+<p>One of the following combinations of scopes is required:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>scim.read</code></td>
+</tr>
+</tbody></table>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>DELETE /v1/plans/{id}</code></p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
+</tr>
+</tbody></table>
 <h1 id='errors'>Errors</h1>
 <p>The SSO API uses the following error codes:</p>
 
