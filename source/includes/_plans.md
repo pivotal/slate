@@ -28,6 +28,15 @@ curl -X POST "http://example.com/v1/plans" \
 
 This endpoint creates a plan.
 
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
+**Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write` 
+
 ### HTTP Request
 
 `POST /v1/plans`
