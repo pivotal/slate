@@ -93,6 +93,17 @@ $ uaac group get zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
   displayname: zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
   zoneid: uaa
 
+$ uaac curl /Users?filter=id+eq+%225d09d594-546d-49fd-b8c1-986875d2b45c%22
+{
+  "resources": [
+    {
+      "id": "5d09d594-546d-49fd-b8c1-986875d2b45c",
+      "userName": "plan-admin",
+      ...
+    }
+  ]
+}
+
 $ uaac member add zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
 success
 
@@ -107,7 +118,7 @@ Please target and authenticate the system UAA zone using the UAA cli prior to ru
 The UAA cli has many ways of fetching a token, please see `uaac token --help` for options.
 
 For these commands, you will need to know the Plan ID.
-This can be retrieved in the response for [Creating a Plan](#create-a-plan).
+This can be retrieved in the response for [Creating a Plan](#create-a-plan) or [Listing Plans](#list-all-plans).
 
 ### Required Scopes
 One of the following combinations of scopes is required:
@@ -132,13 +143,13 @@ This command may error if the group already exists, you can safely ignore the er
 
 The response will list plan administrators by the user ID.
 To view more information about the users in the response, you
-may run
+may use the [UAA List Users API](https://docs.cloudfoundry.org/api/uaa).
 
 ### Grant a plan administrator access to a plan
 
-`uaac member add zones.PLAN_ID.admin [users...]`
+`uaac member add zones.PLAN_ID.admin [usernames...]`
 
 
 ### Revoke a plan administrator access to a plan
 
-`uaac member delete zones.PLAN_ID.admin [users...]`
+`uaac member delete zones.PLAN_ID.admin [usernames...]`
