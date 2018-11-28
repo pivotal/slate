@@ -90,7 +90,7 @@ Parameter | Type | Description
 --------- | ------- | -----------
 id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
 
-## Update a Plan
+## Update a Plan by ID
 
 ```shell
 curl -X PATCH "http://example.com/v1/plans/1" \
@@ -152,7 +152,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `scim.read`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write`
 
 ### HTTP Request
 
