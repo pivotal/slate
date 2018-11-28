@@ -71,6 +71,15 @@ curl "http://example.com/v1/plans/1" \
 
 This endpoint retrieves a plan by its ID.
 
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
+**Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `scim.read`
+
 ### HTTP Request
 
 `GET /v1/plans/{id}`
