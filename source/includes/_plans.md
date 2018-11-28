@@ -190,7 +190,8 @@ curl -X GET "http://example.com/v1/plans" \
       "auth_domain": "some-other-auth-domain",
       "instance_name": "some-other-instance-name"
     }
-]
+  ]
+}
 ```
 
 This endpoint lists all plans.
