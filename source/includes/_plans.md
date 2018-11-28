@@ -89,3 +89,48 @@ Scenario             | Scopes Required
 Parameter | Type | Description
 --------- | ------- | -----------
 id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
+
+## Update a Plan
+
+```shell
+curl -X PATCH "http://example.com/v1/plans/1" \
+  -H "Authorization: Bearer some-token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "some-plan-name",
+    "description": "some-description",
+    "instance_name": "some-instance-name"
+  }'
+```
+
+This endpoint updates a plan.
+
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
+**Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write` 
+
+### HTTP Request
+
+`PATCH /v1/plans/{id}`
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
+
+### Request Body Fields
+One or more of the following fields is required:
+
+Field | Type | Description
+--------- | ------- | -----------
+name | String | Name of the plan
+description | String | Appears as a plan feature in the Services Marketplace
+instance_name | String | Appears on the login page and in other user-facing content, such as email communications
+
+**Note**: A plan's auth domain is immutable. 
