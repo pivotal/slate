@@ -244,6 +244,9 @@
                   <li>
                     <a href="#get-a-plan-by-id" class="toc-h2 toc-link" data-title="Get a Plan by ID">Get a Plan by ID</a>
                   </li>
+                  <li>
+                    <a href="#update-a-plan" class="toc-h2 toc-link" data-title="Update a Plan">Update a Plan</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -518,6 +521,82 @@ may run</p>
 <td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
 </tr>
 </tbody></table>
+<h2 id='update-a-plan'>Update a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+  -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
+  -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+  -d <span class="s1">'{
+    "name": "some-plan-name",
+    "description": "some-description",
+    "instance_name": "some-instance-name"
+  }'</span>
+</code></pre>
+<p>This endpoint updates a plan.</p>
+<h3 id='required-scopes-3'>Required Scopes</h3>
+<p>One of the following combinations of scopes is required:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>zones.write</code> <br> <code>scim.read</code> <br> <code>scim.write</code></td>
+</tr>
+</tbody></table>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>PATCH /v1/plans/{id}</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>String</td>
+<td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
+</tr>
+</tbody></table>
+<h3 id='request-body-fields-2'>Request Body Fields</h3>
+<p>One or more of the following fields is required:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Name of the plan</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Appears as a plan feature in the Services Marketplace</td>
+</tr>
+<tr>
+<td>instance_name</td>
+<td>String</td>
+<td>Appears on the login page and in other user-facing content, such as email communications</td>
+</tr>
+</tbody></table>
+
+<p><strong>Note</strong>: A plan&#39;s auth domain is immutable. </p>
 <h1 id='errors'>Errors</h1>
 <p>The SSO API uses the following error codes:</p>
 
