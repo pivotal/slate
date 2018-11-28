@@ -134,3 +134,32 @@ description | String | Appears as a plan feature in the Services Marketplace
 instance_name | String | Appears on the login page and in other user-facing content, such as email communications
 
 **Note**: A plan's auth domain is immutable. 
+
+
+## Delete a Plan by ID
+
+```shell
+curl -X DELETE "http://example.com/v1/plans/1" \
+  -H "Authorization: Bearer some-token"
+```
+
+This endpoint deletes a plan by its ID.
+
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
+**Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `scim.read`
+
+### HTTP Request
+
+`DELETE /v1/plans/{id}`
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ------- | -----------
+id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
