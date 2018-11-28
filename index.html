@@ -347,6 +347,17 @@ $ uaac group get zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
   displayname: zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
   zoneid: uaa
 
+$ uaac curl /Users?filter=id+eq+%225d09d594-546d-49fd-b8c1-986875d2b45c%22
+{
+  "resources": [
+    {
+      "id": "5d09d594-546d-49fd-b8c1-986875d2b45c",
+      "userName": "plan-admin",
+      ...
+    }
+  ]
+}
+
 $ uaac member add zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
 success
 
@@ -360,7 +371,7 @@ the UAA cli: <a href="https://github.com/cloudfoundry/cf-uaac">https://github.co
 The UAA cli has many ways of fetching a token, please see <code>uaac token --help</code> for options.</p>
 
 <p>For these commands, you will need to know the Plan ID.
-This can be retrieved in the response for <a href="#create-a-plan">Creating a Plan</a>.</p>
+This can be retrieved in the response for <a href="#create-a-plan">Creating a Plan</a> or <a href="#list-all-plans">Listing Plans</a>.</p>
 <h3 id='required-scopes'>Required Scopes</h3>
 <p>One of the following combinations of scopes is required:</p>
 
@@ -394,11 +405,11 @@ This can be retrieved in the response for <a href="#create-a-plan">Creating a Pl
 
 <p>The response will list plan administrators by the user ID.
 To view more information about the users in the response, you
-may run</p>
+may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</a>.</p>
 <h3 id='grant-a-plan-administrator-access-to-a-plan'>Grant a plan administrator access to a plan</h3>
-<p><code>uaac member add zones.PLAN_ID.admin [users...]</code></p>
+<p><code>uaac member add zones.PLAN_ID.admin [usernames...]</code></p>
 <h3 id='revoke-a-plan-administrator-access-to-a-plan'>Revoke a plan administrator access to a plan</h3>
-<p><code>uaac member delete zones.PLAN_ID.admin [users...]</code></p>
+<p><code>uaac member delete zones.PLAN_ID.admin [usernames...]</code></p>
 <h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
