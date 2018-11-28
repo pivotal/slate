@@ -245,7 +245,7 @@
                     <a href="#get-a-plan-by-id" class="toc-h2 toc-link" data-title="Get a Plan by ID">Get a Plan by ID</a>
                   </li>
                   <li>
-                    <a href="#update-a-plan" class="toc-h2 toc-link" data-title="Update a Plan">Update a Plan</a>
+                    <a href="#update-a-plan-by-id" class="toc-h2 toc-link" data-title="Update a Plan by ID">Update a Plan by ID</a>
                   </li>
                   <li>
                     <a href="#delete-a-plan-by-id" class="toc-h2 toc-link" data-title="Delete a Plan by ID">Delete a Plan by ID</a>
@@ -538,7 +538,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-plan'>Update a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+<h2 id='update-a-plan-by-id'>Update a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -637,7 +637,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 </tr>
 <tr>
 <td><strong>Base scopes</strong></td>
-<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>scim.read</code></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>zones.write</code> <br> <code>scim.read</code> <br> <code>scim.write</code></td>
 </tr>
 </tbody></table>
 <h3 id='http-request-4'>HTTP Request</h3>
