@@ -453,6 +453,28 @@ may run</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a plan by its ID.</p>
+<h3 id='required-scopes-2'>Required Scopes</h3>
+<p>One of the following combinations of scopes is required:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>scim.read</code></td>
+</tr>
+</tbody></table>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code>GET /v1/plans/{id}</code></p>
 <h3 id='request-parameters'>Request Parameters</h3>
