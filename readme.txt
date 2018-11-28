@@ -7,6 +7,7 @@ The docs are now viewable at http://localhost:4567
 Prerequisites:
 * Ruby, version 2.3.1 or newer
 * Bundler, may be installed using "gem install bundler"
+* Install necessary gems using "bundle install"
 
 --------------------------------------------------------------------------
 

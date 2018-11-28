@@ -58,3 +58,71 @@ Plan names are derived from the SSO Plan's auth domain. This can be retrieved in
 
 ### Remove plan access from all orgs
 `cf disable-service-access p-identity -p PLAN_AUTH_DOMAIN`
+
+## Managing Plan Administrators for SSO Plans
+
+```example
+$ uaac target login.cf.example.com
+
+Target: https://login.cf.example.com
+Context: admin, from client admin
+
+$ uaac token client get sso-api-client -s sso-api-client-secret
+
+Successfully fetched token via client credentials grant.
+Target: https://login.cf.example.com
+Context: sso-api-client, from client sso-api-client
+
+$ uaac group get zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
+  id: a89ff489-f910-42e9-a8fc-a40486bb5b7f
+  meta
+    version: 4
+    created: 2018-10-30T23:09:58.000Z
+    lastmodified: 2018-11-26T22:38:37.000Z
+  description:
+  members:
+  -
+    origin: uaa
+    type: USER
+    value: 5d09d594-546d-49fd-b8c1-986875d2b45c
+  -
+    origin: uaa
+    type: USER
+    value: 9ceb2a21-e7ca-428d-ad51-3cb5df9919fe
+  schemas: urn:scim:schemas:core:1.0
+  displayname: zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin
+  zoneid: uaa
+
+$ uaac member add zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
+success
+
+$ uaac member delete zones.7891c78f-0cbd-46ab-9205-ef6f945c8071.admin my-plan-administrator
+success
+```
+
+In order to manage Plan Administrators for SSO Plans, we will be using
+the UAA cli: [https://github.com/cloudfoundry/cf-uaac](https://github.com/cloudfoundry/cf-uaac).
+
+Please target and authenticate the system UAA zone using the UAA cli prior to running the following commands.
+The UAA cli has many ways of fetching a token, please see `uaac token --help` for options.
+We recommend having a user with `uaa.admin` scope for the following commands.
+
+For these commands, you will need to know the Plan ID.
+This can be retrieved in the response for [Creating a Plan](#create-a-plan).
+
+### Viewing current plan administrators for a plan
+
+`uaac group get zones.PLAN_ID.admin`
+
+The response will list plan administrators by the user ID.
+To view more information about the users in the response, you
+may run
+
+### Grant a plan administrator access to a plan
+
+`uaac member add zones.PLAN_ID.admin [users...]`
+
+
+### Revoke a plan administrator access to a plan
+
+`uaac member delete zones.PLAN_ID.admin [users...]`
