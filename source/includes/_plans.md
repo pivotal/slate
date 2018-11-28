@@ -163,3 +163,48 @@ Scenario             | Scopes Required
 Parameter | Type | Description
 --------- | ------- | -----------
 id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
+
+## List all Plans
+
+```shell
+curl -X GET "http://example.com/v1/plans" \
+  -H "Authorization: Bearer some-token"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "plans": [
+    {
+      "id": "1",
+      "name": "some-plan-name",
+      "description": "some-description",
+      "auth_domain": "some-auth-domain",
+      "instance_name": "some-instance-name"
+    },
+    {
+      "id": "2",
+      "name": "some-other-plan-name",
+      "description": "some-other-description",
+      "auth_domain": "some-other-auth-domain",
+      "instance_name": "some-other-instance-name"
+    }
+]
+```
+
+This endpoint lists all plans.
+
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
+**Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
+**Zone reader**      | `cloud_controller.admin` <br> `zones.read`
+
+### HTTP Request
+
+`GET /v1/plans`
