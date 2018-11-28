@@ -348,11 +348,38 @@ success
 the UAA cli: <a href="https://github.com/cloudfoundry/cf-uaac">https://github.com/cloudfoundry/cf-uaac</a>.</p>
 
 <p>Please target and authenticate the system UAA zone using the UAA cli prior to running the following commands.
-The UAA cli has many ways of fetching a token, please see <code>uaac token --help</code> for options.
-We recommend having a user with <code>uaa.admin</code> scope for the following commands.</p>
+The UAA cli has many ways of fetching a token, please see <code>uaac token --help</code> for options.</p>
 
 <p>For these commands, you will need to know the Plan ID.
 This can be retrieved in the response for <a href="#create-a-plan">Creating a Plan</a>.</p>
+<h3 id='required-scopes'>Required Scopes</h3>
+<p>One of the following combinations of scopes is required:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>scim.read</code> <br> <code>scim.write</code></td>
+</tr>
+</tbody></table>
+<h3 id='create-uaa-group'>Create UAA group</h3>
+<p>The <code>zones.PLAN_ID.admin</code> group may not exist in UAA. You can run the following:</p>
+
+<p><code>uaac group add zones.PLAN_ID.admin</code></p>
+
+<p>This command may error if the group already exists, you can safely ignore the error if so.</p>
 <h3 id='viewing-current-plan-administrators-for-a-plan'>Viewing current plan administrators for a plan</h3>
 <p><code>uaac group get zones.PLAN_ID.admin</code></p>
 
