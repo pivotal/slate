@@ -105,10 +105,26 @@ the UAA cli: [https://github.com/cloudfoundry/cf-uaac](https://github.com/cloudf
 
 Please target and authenticate the system UAA zone using the UAA cli prior to running the following commands.
 The UAA cli has many ways of fetching a token, please see `uaac token --help` for options.
-We recommend having a user with `uaa.admin` scope for the following commands.
 
 For these commands, you will need to know the Plan ID.
 This can be retrieved in the response for [Creating a Plan](#create-a-plan).
+
+### Required Scopes
+One of the following combinations of scopes is required:
+
+Scenario             | Scopes Required
+-------------------- | -----
+**UAA Admin**        | `uaa.admin`
+**Zones UAA Admin**  | `zones.uaa.admin`
+**Base scopes**      | `scim.read` <br> `scim.write`
+
+### Create UAA group
+
+The `zones.PLAN_ID.admin` group may not exist in UAA. You can run the following:
+
+`uaac group add zones.PLAN_ID.admin`
+
+This command may error if the group already exists, you can safely ignore the error if so.
 
 ### Viewing current plan administrators for a plan
 
