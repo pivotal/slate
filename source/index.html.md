@@ -14,7 +14,8 @@ search: true
 
 # Introduction
 
-TODO
+SSO Tile provides a Plan API for managing SSO Plans via `https://sso-api.YOUR-SYSTEM-DOMAIN`.
+System operators can use the Plan API to automate plan creation, retrieval, update, and deletion.
 
 # Authentication
 

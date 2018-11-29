@@ -3,7 +3,7 @@
 ## Create a Plan
 
 ```shell
-curl -X POST "http://example.com/v1/plans" \
+curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -53,7 +53,7 @@ instance_name | String | Appears on the login page and in other user-facing cont
 ## Get a Plan by ID
 
 ```shell
-curl "http://example.com/v1/plans/1" \
+curl "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token"
 ```
 
@@ -93,7 +93,7 @@ id | String | ID of the plan, which is included in the response of the [Create a
 ## Update a Plan by ID
 
 ```shell
-curl -X PATCH "http://example.com/v1/plans/1" \
+curl -X PATCH "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -139,7 +139,7 @@ instance_name | String | Appears on the login page and in other user-facing cont
 ## Delete a Plan by ID
 
 ```shell
-curl -X DELETE "http://example.com/v1/plans/1" \
+curl -X DELETE "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token"
 ```
 
@@ -167,7 +167,7 @@ id | String | ID of the plan, which is included in the response of the [Create a
 ## List all Plans
 
 ```shell
-curl -X GET "http://example.com/v1/plans" \
+curl -X GET "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   -H "Authorization: Bearer some-token"
 ```
 
