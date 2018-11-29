@@ -264,7 +264,8 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>TODO</p>
+<p>SSO Tile provides a Plan API for managing SSO Plans via <code>https://sso-api.YOUR-SYSTEM-DOMAIN</code>.
+System operators can use the Plan API to automate plan creation, retrieval, update, and deletion.</p>
 <h1 id='authentication'>Authentication</h1>
 <p>TODO</p>
 <h1 id='workflows'>Workflows</h1><h2 id='managing-cloudfoundry-organizations-for-sso-plans'>Managing CloudFoundry Organizations for SSO Plans</h2><pre class="highlight plaintext"><code>$ cf api api.cf.example.com
@@ -410,7 +411,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <p><code>uaac member add zones.PLAN_ID.admin [usernames...]</code></p>
 <h3 id='revoke-a-plan-administrator-access-to-a-plan'>Revoke a plan administrator access to a plan</h3>
 <p><code>uaac member delete zones.PLAN_ID.admin [usernames...]</code></p>
-<h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
+<h1 id='plans'>Plans</h1><h2 id='create-a-plan'>Create a Plan</h2><pre class="highlight shell tab-shell"><code>curl -X POST <span class="s2">"https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -485,7 +486,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <td>Appears on the login page and in other user-facing content, such as email communications</td>
 </tr>
 </tbody></table>
-<h2 id='get-a-plan-by-id'>Get a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+<h2 id='get-a-plan-by-id'>Get a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span>
 </code></pre>
 <blockquote>
@@ -538,7 +539,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
 </tr>
 </tbody></table>
-<h2 id='update-a-plan-by-id'>Update a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+<h2 id='update-a-plan-by-id'>Update a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X PATCH <span class="s2">"https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span> <span class="se">\</span>
   -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
   -d <span class="s1">'{
@@ -614,7 +615,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 </tbody></table>
 
 <p><strong>Note</strong>: A plan&#39;s auth domain is immutable. </p>
-<h2 id='delete-a-plan-by-id'>Delete a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"http://example.com/v1/plans/1"</span> <span class="se">\</span>
+<h2 id='delete-a-plan-by-id'>Delete a Plan by ID</h2><pre class="highlight shell tab-shell"><code>curl -X DELETE <span class="s2">"https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span>
 </code></pre>
 <p>This endpoint deletes a plan by its ID.</p>
@@ -656,7 +657,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <td>ID of the plan, which is included in the response of the <a href="#create-a-plan">Create a Plan</a> endpoint.</td>
 </tr>
 </tbody></table>
-<h2 id='list-all-plans'>List all Plans</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"http://example.com/v1/plans"</span> <span class="se">\</span>
+<h2 id='list-all-plans'>List all Plans</h2><pre class="highlight shell tab-shell"><code>curl -X GET <span class="s2">"https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans"</span> <span class="se">\</span>
   -H <span class="s2">"Authorization: Bearer some-token"</span>
 </code></pre>
 <blockquote>
