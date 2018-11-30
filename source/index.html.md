@@ -23,7 +23,7 @@ SSO Plan API uses an OAuth2 access token to access the API. An access token capa
 
 Scenario             | Scopes Required
 -------------------- | -----
-**UAA Admin**        | `uaa.admin`
+**UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
 **Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write`
 
@@ -53,10 +53,11 @@ You may also create a client directly from UAA using their API. Please see: [Cli
 ## Acquiring an access token
 
 ```
-# Using CF CLI with UAA User
-$ cf api api.YOUR-SYSTEM-DOMAIN
-$ cf auth USERNAME PASSWORD
-$ cf oauth-token
+# Using UAA CLI with UAA User
+$ uaac target login.YOUR-SYSTEM-DOMAIN
+$ uaac token owner get CLIENT_ID USERNAME -p password  -s CLIENT_SECRET
+# Note: You must create your own client that allows the scopes required
+$ uaac context
 ```
 
 ```
@@ -77,5 +78,3 @@ Access tokens may be retrieved in many ways. On the right, we show common approa
 authenticating against the appropriate UAA and retrieving an access token. For command line usage, it is helpful to extract the token into an environment variable, such as `$SSO_TOKEN`.
 
 You may also fetch a token directly from UAA using their API. Please see: [Token > Client Credentials Grant](http://docs.cloudfoundry.org/api/uaa/)
-
-_Note: A CloudFoundry user that is provisioned during install time is the "admin" user. The UAA Admin credentials can be found under Credentials tab in the PAS tile on OpsManager. We do not recommend this user though_
