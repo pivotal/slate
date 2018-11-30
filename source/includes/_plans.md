@@ -1,5 +1,26 @@
 # Plans
 
+## The Plan Object
+
+```json
+{
+  "id": "1",
+  "name": "some-plan-name",
+  "description": "some-description",
+  "auth_domain": "some-auth-domain",
+  "instance_name": "some-instance-name"
+}
+```
+
+Field | Type | Description
+--------- | ------- | -----------
+id | String | ID of the plan
+name | String | Name of the plan
+description | String | Appears as a plan feature in the Services Marketplace
+auth_domain | String | Subdomain of the URL where users authenticate to access applications covered by the service plan
+instance_name | String | Appears on the login page and in other user-facing content, such as email communications
+
+
 ## Create a Plan
 
 ```shell
@@ -97,10 +118,22 @@ curl -X PATCH "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token" \
   -H "Content-Type: application/json" \
   -d '{
-    "name": "some-plan-name",
-    "description": "some-description",
-    "instance_name": "some-instance-name"
+    "name": "new-plan-name",
+    "description": "new-description",
+    "instance_name": "new-instance-name"
   }'
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "id": "1",
+  "name": "new-plan-name",
+  "description": "new-description",
+  "auth_domain": "old-auth-domain",
+  "instance_name": "new-instance-name"
+}
 ```
 
 This endpoint updates a plan.
