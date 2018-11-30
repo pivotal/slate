@@ -23,6 +23,7 @@ instance_name | String | Appears on the login page and in other user-facing cont
 
 ## Create a Plan
 
+> Example Request:
 ```shell
 curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   -H "Authorization: Bearer some-token" \
@@ -35,9 +36,12 @@ curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   }'
 ```
 
-> The above command returns JSON structured like this:
+> Example Response:
 
-```json
+```http
+HTTP/1.1 201 Created
+Content-Type: application/json
+
 {
   "id": "1",
   "name": "some-plan-name",
@@ -73,14 +77,19 @@ instance_name | String | Appears on the login page and in other user-facing cont
 
 ## Get a Plan by ID
 
+> Example Request:
+
 ```shell
 curl "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token"
 ```
 
-> The above command returns JSON structured like this:
+> Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "id": "1",
   "name": "some-plan-name",
@@ -113,6 +122,8 @@ id | String | ID of the plan, which is included in the response of the [Create a
 
 ## Update a Plan by ID
 
+> Example Request:
+
 ```shell
 curl -X PATCH "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token" \
@@ -124,9 +135,12 @@ curl -X PATCH "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   }'
 ```
 
-> The above command returns JSON structured like this:
+> Example Response:
 
-```json
+```http
+HTTP/1.1 202 Accepted
+Content-Type: application/json
+
 {
   "id": "1",
   "name": "new-plan-name",
@@ -171,9 +185,18 @@ instance_name | String | Appears on the login page and in other user-facing cont
 
 ## Delete a Plan by ID
 
+> Example Request:
+
 ```shell
 curl -X DELETE "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
   -H "Authorization: Bearer some-token"
+```
+
+> Example Response:
+
+```http
+HTTP/1.1 202 Accepted
+Content-Type: application/json
 ```
 
 This endpoint deletes a plan by its ID.
@@ -199,14 +222,19 @@ id | String | ID of the plan, which is included in the response of the [Create a
 
 ## List all Plans
 
+> Example Request:
+
 ```shell
 curl -X GET "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   -H "Authorization: Bearer some-token"
 ```
 
-> The above command returns JSON structured like this:
+> Example Response:
 
-```json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
 {
   "plans": [
     {
