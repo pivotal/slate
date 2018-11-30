@@ -332,7 +332,7 @@ System operators can use the Plan API to automate plan creation, retrieval, upda
 <p>You may also create a client directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Clients &gt; Create</a></p>
 <h2 id='acquiring-an-access-token'>Acquiring an access token</h2><pre class="highlight plaintext"><code># Using UAA CLI with UAA User
 $ uaac target login.YOUR-SYSTEM-DOMAIN
-$ uaac token owner get CLIENT_ID USERNAME -p password  -s CLIENT_SECRET
+$ uaac token owner get CLIENT_ID USERNAME -p PASSWORD -s CLIENT_SECRET
 # Note: You must create your own client that allows the scopes required
 $ uaac context
 </code></pre><pre class="highlight plaintext"><code># Using CF CLI with UAA Client
@@ -347,7 +347,7 @@ $ uaac context
 <p>Access tokens may be retrieved in many ways. On the right, we show common approaches to
 authenticating against the appropriate UAA and retrieving an access token. For command line usage, it is helpful to extract the token into an environment variable, such as <code>$SSO_TOKEN</code>.</p>
 
-<p>You may also fetch a token directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Token &gt; Client Credentials Grant</a></p>
+<p>You may also fetch a token directly from UAA using their API. Please see the supported grant types: <a href="http://docs.cloudfoundry.org/api/uaa/">Token</a></p>
 <h1 id='workflows'>Workflows</h1><h2 id='managing-cloudfoundry-organizations-for-sso-plans'>Managing CloudFoundry Organizations for SSO Plans</h2><pre class="highlight plaintext"><code>$ cf api api.cf.example.com
 Setting api endpoint to api.cf.example.com...
 
