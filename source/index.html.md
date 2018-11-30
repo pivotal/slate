@@ -55,7 +55,7 @@ You may also create a client directly from UAA using their API. Please see: [Cli
 ```
 # Using UAA CLI with UAA User
 $ uaac target login.YOUR-SYSTEM-DOMAIN
-$ uaac token owner get CLIENT_ID USERNAME -p password  -s CLIENT_SECRET
+$ uaac token owner get CLIENT_ID USERNAME -p PASSWORD -s CLIENT_SECRET
 # Note: You must create your own client that allows the scopes required
 $ uaac context
 ```
@@ -77,4 +77,4 @@ $ uaac context
 Access tokens may be retrieved in many ways. On the right, we show common approaches to
 authenticating against the appropriate UAA and retrieving an access token. For command line usage, it is helpful to extract the token into an environment variable, such as `$SSO_TOKEN`.
 
-You may also fetch a token directly from UAA using their API. Please see: [Token > Client Credentials Grant](http://docs.cloudfoundry.org/api/uaa/)
+You may also fetch a token directly from UAA using their API. Please see the supported grant types: [Token](http://docs.cloudfoundry.org/api/uaa/)
