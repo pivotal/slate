@@ -76,6 +76,10 @@ description | String | Appears as a plan feature in the Services Marketplace
 auth_domain | String | Subdomain of the URL where users authenticate to access applications covered by the service plan
 instance_name | String | Appears on the login page and in other user-facing content, such as email communications
 
+### Response Body
+
+[Plan Object](#the-plan-object)
+
 ## Get a Plan by ID
 
 > Example Request:
@@ -120,6 +124,10 @@ Scenario             | Scopes Required
 Parameter | Type | Description
 --------- | ------- | -----------
 id | String | ID of the plan, which is included in the response of the [Create a Plan](#create-a-plan) endpoint.
+
+### Response Body
+
+[Plan Object](#the-plan-object)
 
 ## Update a Plan by ID
 
@@ -183,6 +191,9 @@ instance_name | String | Appears on the login page and in other user-facing cont
 
 **Note**: A plan's auth domain is immutable. 
 
+### Response Body
+
+[Plan Object](#the-plan-object)
 
 ## Delete a Plan by ID
 
@@ -271,3 +282,7 @@ Scenario             | Scopes Required
 ### HTTP Request
 
 `GET /v1/plans`
+
+### Response Body
+
+[Plan Object](#the-plan-object) array
