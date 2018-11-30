@@ -24,6 +24,7 @@ instance_name | String | Appears on the login page and in other user-facing cont
 ## Create a Plan
 
 > Example Request:
+
 ```shell
 curl -X POST "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" \
   -H "Authorization: Bearer some-token" \
