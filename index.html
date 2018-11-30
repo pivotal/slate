@@ -223,6 +223,14 @@
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#creating-a-automation-client" class="toc-h2 toc-link" data-title="Creating a Automation Client">Creating a Automation Client</a>
+                  </li>
+                  <li>
+                    <a href="#acquiring-an-access-token" class="toc-h2 toc-link" data-title="Acquiring an access token">Acquiring an access token</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#workflows" class="toc-h1 toc-link" data-title="Workflows">Workflows</a>
@@ -267,7 +275,77 @@
 <p>SSO Tile provides a Plan API for managing SSO Plans via <code>https://sso-api.YOUR-SYSTEM-DOMAIN</code>.
 System operators can use the Plan API to automate plan creation, retrieval, update, and deletion.</p>
 <h1 id='authentication'>Authentication</h1>
-<p>TODO</p>
+<p>SSO Plan API uses an OAuth2 access token to access the API. An access token capable of using all the Plans API, can be created with one of the following scope combinations:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>cloud_controller.admin</code> <br> <code>zones.read</code> <br> <code>zones.write</code> <br> <code>scim.read</code> <br> <code>scim.write</code></td>
+</tr>
+</tbody></table>
+
+<p>For all API calls, you must include <code>Authorization: Bearer YOUR_ACCESS_TOKEN</code> as a request header. For example, to get all plans,</p>
+
+<p><code>curl https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans&quot; -H &quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</code></p>
+<h2 id='creating-a-automation-client'>Creating a Automation Client</h2><pre class="highlight plaintext"><code>$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
+</code></pre>
+<p>On the right, we show how to create a client using <code>uaac client add</code>. Please see the scopes required per endpoint to determine the appropriate authorities to give to your client.</p>
+
+<p>To create clients you must do so with a user or client containing any of the following scope combinations:</p>
+
+<table><thead>
+<tr>
+<th>Scenario</th>
+<th>Scopes Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>UAA Admin</strong></td>
+<td><code>uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Zones UAA Admin</strong></td>
+<td><code>zones.uaa.admin</code></td>
+</tr>
+<tr>
+<td><strong>Base scopes</strong></td>
+<td><code>clients.read</code> <br> <code>clients.write</code></td>
+</tr>
+</tbody></table>
+
+<p>You may also create a client directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Clients &gt; Create</a></p>
+<h2 id='acquiring-an-access-token'>Acquiring an access token</h2><pre class="highlight plaintext"><code># Using CF CLI with UAA User
+$ cf api api.YOUR-SYSTEM-DOMAIN
+$ cf auth USERNAME PASSWORD
+$ cf oauth-token
+</code></pre><pre class="highlight plaintext"><code># Using CF CLI with UAA Client
+$ cf api api.YOUR-SYSTEM-DOMAIN
+$ cf auth CLIENT_ID CLIENT_SECRET --client-credentials
+$ cf oauth-token
+</code></pre><pre class="highlight plaintext"><code># Using UAA CLI with UAA Client
+$ uaac target login.YOUR-SYSTEM-DOMAIN
+$ uaac token client get CLIENT_ID -s CLIENT_SECRET
+$ uaac context
+</code></pre>
+<p>Access tokens may be retrieved in many ways. On the right, we show common approaches to
+authenticating against the appropriate UAA and retrieving an access token. For command line usage, it is helpful to extract the token into an environment variable, such as <code>$SSO_TOKEN</code>.</p>
+
+<p>You may also fetch a token directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Token &gt; Client Credentials Grant</a></p>
+
+<p><em>Note: A CloudFoundry user that is provisioned during install time is the &quot;admin&quot; user. The UAA Admin credentials can be found under Credentials tab in the PAS tile on OpsManager. We do not recommend this user though</em></p>
 <h1 id='workflows'>Workflows</h1><h2 id='managing-cloudfoundry-organizations-for-sso-plans'>Managing CloudFoundry Organizations for SSO Plans</h2><pre class="highlight plaintext"><code>$ cf api api.cf.example.com
 Setting api endpoint to api.cf.example.com...
 
