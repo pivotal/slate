@@ -288,7 +288,7 @@ System operators can use the Plan API to automate plan creation, retrieval, upda
 </thead><tbody>
 <tr>
 <td><strong>UAA Admin</strong></td>
-<td><code>uaa.admin</code></td>
+<td><code>cloud_controller.admin</code> <br> <code>uaa.admin</code></td>
 </tr>
 <tr>
 <td><strong>Zones UAA Admin</strong></td>
@@ -330,10 +330,11 @@ System operators can use the Plan API to automate plan creation, retrieval, upda
 </tbody></table>
 
 <p>You may also create a client directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Clients &gt; Create</a></p>
-<h2 id='acquiring-an-access-token'>Acquiring an access token</h2><pre class="highlight plaintext"><code># Using CF CLI with UAA User
-$ cf api api.YOUR-SYSTEM-DOMAIN
-$ cf auth USERNAME PASSWORD
-$ cf oauth-token
+<h2 id='acquiring-an-access-token'>Acquiring an access token</h2><pre class="highlight plaintext"><code># Using UAA CLI with UAA User
+$ uaac target login.YOUR-SYSTEM-DOMAIN
+$ uaac token owner get CLIENT_ID USERNAME -p password  -s CLIENT_SECRET
+# Note: You must create your own client that allows the scopes required
+$ uaac context
 </code></pre><pre class="highlight plaintext"><code># Using CF CLI with UAA Client
 $ cf api api.YOUR-SYSTEM-DOMAIN
 $ cf auth CLIENT_ID CLIENT_SECRET --client-credentials
@@ -347,8 +348,6 @@ $ uaac context
 authenticating against the appropriate UAA and retrieving an access token. For command line usage, it is helpful to extract the token into an environment variable, such as <code>$SSO_TOKEN</code>.</p>
 
 <p>You may also fetch a token directly from UAA using their API. Please see: <a href="http://docs.cloudfoundry.org/api/uaa/">Token &gt; Client Credentials Grant</a></p>
-
-<p><em>Note: A CloudFoundry user that is provisioned during install time is the &quot;admin&quot; user. The UAA Admin credentials can be found under Credentials tab in the PAS tile on OpsManager. We do not recommend this user though</em></p>
 <h1 id='workflows'>Workflows</h1><h2 id='managing-cloudfoundry-organizations-for-sso-plans'>Managing CloudFoundry Organizations for SSO Plans</h2><pre class="highlight plaintext"><code>$ cf api api.cf.example.com
 Setting api endpoint to api.cf.example.com...
 
