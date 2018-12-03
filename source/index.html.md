@@ -25,7 +25,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write`
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
 
 For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as a request header. For example, to get all plans,
 
@@ -34,7 +34,7 @@ For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as
 ## Creating an Automation Client
 
 ```
-$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
+$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.write"
 ```
 
 On the right, we show how to create a client using `uaac client add`. Please see the scopes required per endpoint to determine the appropriate authorities to give to your client.

@@ -61,7 +61,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write` 
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
 
 ### HTTP Request
 
@@ -113,7 +113,8 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `scim.read`
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
+**Zone reader**      | `cloud_controller.admin` <br> `zones.read`
 
 ### HTTP Request
 
@@ -168,7 +169,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write` 
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
 
 ### HTTP Request
 
@@ -220,7 +221,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Base scopes**      | `cloud_controller.admin` <br> `zones.read` <br> `zones.write` <br> `scim.read` <br> `scim.write`
+**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
 
 ### HTTP Request
 
