@@ -31,7 +31,7 @@ For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as
 
 `curl https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" -H "Authorization: Bearer YOUR_ACCESS_TOKEN"`
 
-## Creating a Automation Client
+## Creating an Automation Client
 
 ```
 $ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.read,zones.write,scim.read,scim.write"
