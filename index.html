@@ -303,7 +303,7 @@ System operators can use the Plan API to automate plan creation, retrieval, upda
 <p>For all API calls, you must include <code>Authorization: Bearer YOUR_ACCESS_TOKEN</code> as a request header. For example, to get all plans,</p>
 
 <p><code>curl https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans&quot; -H &quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</code></p>
-<h2 id='creating-an-automation-client'>Creating an Automation Client</h2><pre class="highlight plaintext"><code>$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.write"
+<h2 id='creating-an-automation-client'>Creating an Automation Client</h2><pre class="highlight plaintext"><code>$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
 </code></pre>
 <p>On the right, we show how to create a client using <code>uaac client add</code>. Please see the scopes required per endpoint to determine the appropriate authorities to give to your client.</p>
 
