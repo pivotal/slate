@@ -267,7 +267,7 @@
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#status-codes" class="toc-h1 toc-link" data-title="Status Codes">Status Codes</a>
           </li>
       </ul>
     </div>
@@ -893,38 +893,55 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <p><code>GET /v1/plans</code></p>
 <h3 id='response-body-4'>Response Body</h3>
 <p><a href="#the-plan-object">Plan Object</a> array</p>
-<h1 id='errors'>Errors</h1>
-<p>The SSO API uses the following error codes:</p>
+<h1 id='status-codes'>Status Codes</h1>
+<p>The SSO API uses the following status codes:</p>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Code</th>
+<th>Status</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>200</td>
+<td>OK</td>
+<td>Successfully retrieved or updated SSO plan(s)</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>Successfully created an SSO plan</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>Successfully deleted an SSO plan</td>
+</tr>
+<tr>
 <td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>Bad Request</td>
+<td>Request body is malformed</td>
 </tr>
 <tr>
 <td>401</td>
 <td>Unauthorized</td>
+<td>Invalid or missing access token</td>
 </tr>
 <tr>
 <td>403</td>
 <td>Forbidden</td>
+<td>Missing required scopes for a requested operation</td>
 </tr>
 <tr>
 <td>404</td>
 <td>Not Found</td>
+<td>Failed to find the requested SSO plan</td>
 </tr>
 <tr>
 <td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>Internal Server Error</td>
+<td>The server encountered an unexpected condition which prevented it from fulfilling the request</td>
 </tr>
 </tbody></table>
 
