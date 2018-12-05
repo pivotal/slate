@@ -25,7 +25,7 @@ Scenario             | Scopes Required
 -------------------- | -----
 **UAA Admin**        | `cloud_controller.admin` <br> `uaa.admin`
 **Zones UAA Admin**  | `cloud_controller.admin` <br> `zones.uaa.admin`
-**Zone writer**      | `cloud_controller.admin` <br> `zones.write`
+**Base scopes**      | `cloud_controller.admin` <br> `zones.write` <br> `scim.write` <br> `scim.read`
 
 For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as a request header. For example, to get all plans,
 
