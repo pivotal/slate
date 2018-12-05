@@ -34,7 +34,7 @@ For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as
 ## Creating an Automation Client
 
 ```
-$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
+$ uaac client add example-sso-client --secret sso-client-secret --authorized_grant_type client_credentials --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
 ```
 
 On the right, we show how to create a client using `uaac client add`. Please see the scopes required per endpoint to determine the appropriate authorities to give to your client.
