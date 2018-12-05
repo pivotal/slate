@@ -148,7 +148,7 @@ curl -X PATCH "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
 > Example Response:
 
 ```http
-HTTP/1.1 202 Accepted
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
@@ -208,7 +208,7 @@ curl -X DELETE "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans/1" \
 > Example Response:
 
 ```http
-HTTP/1.1 202 Accepted
+HTTP/1.1 204 No Content
 Content-Type: application/json
 ```
 
