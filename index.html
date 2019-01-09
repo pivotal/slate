@@ -303,7 +303,7 @@ System operators can use the Plan API to automate plan creation, retrieval, upda
 <p>For all API calls, you must include <code>Authorization: Bearer YOUR_ACCESS_TOKEN</code> as a request header. For example, to get all plans,</p>
 
 <p><code>curl https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans&quot; -H &quot;Authorization: Bearer YOUR_ACCESS_TOKEN&quot;</code></p>
-<h2 id='creating-an-automation-client'>Creating an Automation Client</h2><pre class="highlight plaintext"><code>$ uaac client add example-sso-client --secret sso-client-secret --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
+<h2 id='creating-an-automation-client'>Creating an Automation Client</h2><pre class="highlight plaintext"><code>$ uaac client add example-sso-client --secret sso-client-secret --authorized_grant_type client_credentials --authorities "cloud_controller.admin,zones.write,scim.write,scim.read"
 </code></pre>
 <p>On the right, we show how to create a client using <code>uaac client add</code>. Please see the scopes required per endpoint to determine the appropriate authorities to give to your client.</p>
 
@@ -503,32 +503,38 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <tr>
 <th>Field</th>
 <th>Type</th>
+<th>Unique</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td>String</td>
+<td>true</td>
 <td>ID of the plan</td>
 </tr>
 <tr>
 <td>name</td>
 <td>String</td>
+<td></td>
 <td>Name of the plan</td>
 </tr>
 <tr>
 <td>description</td>
 <td>String</td>
+<td></td>
 <td>Appears as a plan feature in the Services Marketplace</td>
 </tr>
 <tr>
 <td>auth_domain</td>
 <td>String</td>
+<td>true</td>
 <td>Subdomain of the URL where users authenticate to access applications covered by the service plan</td>
 </tr>
 <tr>
 <td>instance_name</td>
 <td>String</td>
+<td></td>
 <td>Appears on the login page and in other user-facing content, such as email communications</td>
 </tr>
 </tbody></table>
@@ -698,7 +704,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <blockquote>
 <p>Example Response:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 
 <span class="p">{</span><span class="w">
@@ -788,7 +794,7 @@ may use the <a href="https://docs.cloudfoundry.org/api/uaa">UAA List Users API</
 <blockquote>
 <p>Example Response:</p>
 </blockquote>
-<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">202</span> <span class="ne">Accepted</span>
+<pre class="highlight http tab-http"><code><span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">204</span> <span class="ne">No Content</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 </code></pre>
 <p>This endpoint deletes a plan by its ID.</p>
