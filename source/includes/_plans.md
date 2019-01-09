@@ -12,13 +12,13 @@
 }
 ```
 
-Field | Type | Description
---------- | ------- | -----------
-id | String | ID of the plan
-name | String | Name of the plan
-description | String | Appears as a plan feature in the Services Marketplace
-auth_domain | String | Subdomain of the URL where users authenticate to access applications covered by the service plan
-instance_name | String | Appears on the login page and in other user-facing content, such as email communications
+Field | Type | Unique | Description
+--------- | ------- | -------------- | -----------
+id | String | true | ID of the plan
+name | String |  | Name of the plan
+description | String |  | Appears as a plan feature in the Services Marketplace
+auth_domain | String | true | Subdomain of the URL where users authenticate to access applications covered by the service plan
+instance_name | String |  | Appears on the login page and in other user-facing content, such as email communications
 
 
 ## Create a Plan
