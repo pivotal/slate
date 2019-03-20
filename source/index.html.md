@@ -29,7 +29,7 @@ Scenario             | Scopes Required
 
 For all API calls, you must include `Authorization: Bearer YOUR_ACCESS_TOKEN` as a request header. For example, to get all plans,
 
-`curl https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" -H "Authorization: Bearer YOUR_ACCESS_TOKEN"`
+`curl "https://sso-api.YOUR-SYSTEM-DOMAIN/v1/plans" -H "Authorization: Bearer YOUR_ACCESS_TOKEN"`
 
 ## Creating an Automation Client
 
